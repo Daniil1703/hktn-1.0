@@ -12,10 +12,10 @@ def run_generator(arg1, arg2):
         # Обрабатываем данные
         DATA_ROOT = os.path.join(BASE_DIR, 'data.pkl')
         data = pd.read_pickle(DATA_ROOT)
-        steps = int(arg2)
+        steps = int(arg1)
         info_step = 10 #% шаг информирования - через 10% превышения
         mean_std_max = 0
-        seconds = int(arg1)
+        seconds = int(arg2)
         new_news = []
         messenge = ''
         while True:

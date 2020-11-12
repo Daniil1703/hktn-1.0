@@ -10,10 +10,10 @@ def run_generator(arg1, arg2):
         col_steps = int(arg2)
         # Обрабатываем данные
         # ...
+        answer = interval + col_steps
         # ...
-
         # strOut возвращает результат в терминал
-        strOut = f"{interval + col_steps}, '<- Your answer!'"
+        strOut = f"{answer}, '<- Your answer!'"
         return strOut
 
     except ValueError:
@@ -36,7 +36,7 @@ class SendData(View):
         if run_generator(col_steps, interval) == None:
             messages.error(request, self.message_error)
         else:
-            run_generator(col_steps, interval)
+            print(run_generator(col_steps, interval))
             messages.success(request, self.message_succ)
         return redirect('generator:index')
 

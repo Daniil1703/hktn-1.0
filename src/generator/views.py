@@ -1,26 +1,8 @@
 from django.views.generic import View
+from .generator import run_generator
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-
-def run_generator(arg1, arg2):
-    # Пробуем преобразовать строки в числа
-    try:
-        interval = int(arg1)
-        col_steps = int(arg2)
-        # Обрабатываем данные
-        # ...
-        answer = interval + col_steps
-        # ...
-        # strOut возвращает результат в терминал
-        strOut = f"{answer}, '<- Your answer!'"
-        return strOut
-
-    except ValueError:
-        # Выдаем ошибку, в случае неверного ввода данных
-        print('Ввод только чисел!')
-
-    return None
 
     
 class SendData(View):

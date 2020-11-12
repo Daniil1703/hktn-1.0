@@ -7,8 +7,8 @@ from django.contrib import messages
     
 class SendData(View):
 
-    message_succ = 'Данные успешно отправлены!'
-    message_error = 'данные введены неверно'
+    message_succ = 'Данные успешно бработаны!'
+    message_error = 'Данные введены неверно!'
 
     def get(self, request):
         return render(request, template_name='index.html', context=None)
@@ -16,9 +16,9 @@ class SendData(View):
     def post(self, request):
         col_steps = request.POST['col_steps']
         interval = request.POST['interval']
-        if run_generator(col_steps, interval) == None:
+        check_func = run_generator(col_steps, interval)
+        if check_func == False:
             messages.error(request, self.message_error)
-        else:
-            run_generator(col_steps, interval)
+        elif check_func == True:
             messages.success(request, self.message_succ)
         return redirect('generator:index')

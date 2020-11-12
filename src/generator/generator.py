@@ -6,10 +6,6 @@ from pathlib import Path
 def run_generator(arg1, arg2):
     try:
         BASE_DIR = Path(__file__).resolve().parent.parent
-        # Пробуем преобразовать строки в числа
-        # interval = int(arg1)
-        # col_steps = int(arg2)
-        # Обрабатываем данные
         DATA_ROOT = os.path.join(BASE_DIR, 'data.pkl')
         data = pd.read_pickle(DATA_ROOT)
         steps = int(arg1)
@@ -32,8 +28,6 @@ def run_generator(arg1, arg2):
                     mean_std_max += info_step
                     messenge = 'Превышено стандартное отклонение на: ' + str(procces) + '%'
                     print(messenge)
-                    #url = f"https://api.telegram.org/bot{bot_id}/sendMessage?chat_id={chat_id}&text={messenge}"
-                    #requests.post(url)
             print(data_sample['title'][0])
 
         mean_std = int(data_sample['month_mean'][0]-data_sample['month_std'][0])
@@ -41,7 +35,6 @@ def run_generator(arg1, arg2):
             procces = 100 - int((len(new_news)*100)/mean_std)
             messenge = 'Количество сообщений ниже стандартного отклонения на: ' + str(procces) + '%'
             print(messenge)
-
+        return True
     except ValueError:
-        # Выдаем ошибку, в случае неверного ввода данных
-        print('Ввод только чисел!')
+        return False

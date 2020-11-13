@@ -21,4 +21,4 @@ class SendData(View):
             messages.error(request, self.message_error)
         elif check_func == True:
             messages.success(request, self.message_succ)
-        return redirect('generator:index')
+        return render(request, 'index.html', context=None)

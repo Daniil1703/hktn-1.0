@@ -1,19 +1,72 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <title>Hktn</title>
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'generator/css/style.css'%}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
 
-<div class="container" style="margin-top: 50px;">
-    <div style="height: 50px;">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Главная</title>
+</head>
+<style>
+    body {
+        background: #1d1163;
+        background-image: url({% static 'generator/img/767.jpg' %});
+        background-repeat: no-repeat;
+        -moz-background-size: 100%;
+        -webkit-background-size: 100%; 
+        -o-background-size: 100%; 
+        background-size: 100%; 
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    .navbar {
+        max-width: 400px;
+        margin: auto;
+    }
+    .links {
+        color: rgb(212, 212, 212);
+        font-weight: bold;
+        font-size: 17px;
+        border-bottom: 2px solid white;
+    }
+    .container .row-m {
+        margin-top: 50px !important;
+        margin: 0 auto 0 auto; background: rgb(25, 25, 39); border-radius: 10px; max-width: 400px;
+    }
+
+    .row h2 {
+        font-family: 'Goldman', cursive; color: white; padding: 10px;
+    }
+
+    .form-group .form-control {
+        margin: auto;
+        max-width: 300px;
+        border-radius: 27px;
+        height: 50px;
+        background: rgb(187, 188, 192);
+    }
+
+    .button {
+        color: rgb(6, 6, 8);
+        font-weight: bold;
+        max-width: 200px !important;
+        border-radius: 30px;
+        background: rgb(151, 151, 151) !important;
+    }
+
+</style>
+<body>
+    {% include 'includes/navbar.html' %}
+<div class="container">
+    <!-- <div style="height: 50px;">
         {% if messages %}
         {% for message in messages %}
             {% if message.tags == 'success' %}
@@ -36,23 +89,22 @@
         
         {% endfor %}
         {% endif %}
-    </div>
-    <div class="row" style="margin-top: 30px;">
-        <div class="col-md-5 col-md-offset-2" style="margin: 0 auto 0 auto; background: beige; border-radius: 20px;">
+    </div> -->
+    <div class="row">
+        <div class="col-md-5 col-md-offset-2 row-m">
         <h2 class="text-center">Ввод данных</h2>
         <form class="form-group" action="{% url 'generator:index'%}"  method="post">
             {% csrf_token %}
-            <label for="number">Колличество шагов</label>
-            <input class="form-control" type="number" min="1" name="col_steps" data-validate>
+            <input class="form-control" placeholder="Колличество шагов" type="number" min="1" name="col_steps" data-validate>
             <br>
-            <label for="interval">Интервал</label>
-            <input class="form-control" type="number" name="interval" data-validate>
+            <input class="form-control" type="number" placeholder="Интервал" name="interval" data-validate>
             <br><br>
-            <button class="form-control" type="submit">Отправить</button>
+            <button class="form-control button" type="submit">Отправить</button>
         </form>
         </div>
     </div>
 </div>
+{% include 'includes/terminal.html'%}
 
 <script>
     $(function(){

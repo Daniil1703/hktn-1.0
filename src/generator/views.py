@@ -17,8 +17,17 @@ class SendData(View):
         col_steps = request.POST['col_steps']
         interval = request.POST['interval']
         check_func = run_generator(col_steps, interval)
-        if check_func == False:
+        if check_func != False:
             messages.error(request, self.message_error)
         elif check_func == True:
             messages.success(request, self.message_succ)
-        return render(request, 'index.html', context=None)
+        try:
+            ch1 = check_func[0]
+        except TypeError: 
+            return render(request, 'index.html', context=None)
+        ch2 = check_func[1]
+        context = {
+            'ch1': ch1,
+            'ch2': ch2
+        } 
+        return render(request, 'index.html', context=context)

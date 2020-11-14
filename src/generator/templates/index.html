@@ -108,6 +108,27 @@
         </div>
     </div>
 </div>
+<br> <br>
+<div class="container-2" 
+     style="margin: 0 auto 0 auto;
+            opacity: 0.9;
+            max-width: 700px; 
+            background: rgb(25, 25, 39);
+            padding: 5px;
+            border-radius: 15px;
+            border: 3px solid rgb(39, 40, 44);        
+    ">
+    <h3 style="color: rgb(231, 230, 230); font-weight: bold; text-align: center;
+               font-family: 'Goldman', cursive;">Результат</h3>
+    {% for ch in ch1 %}
+        <p style="color: rgb(221, 221, 221); margin: 0; padding: 0 !important;">{{ch}}</p>
+    {% endfor %}
+    {% for ch in ch2 %}
+    <p style="margin-top:15px; border-top: 1px solid rgb(201, 201, 201); color: rgb(221, 221, 221); font-weight: bolder;">{{ch}}</p>
+    {% endfor %}
+</div>
+
+
 {% include 'includes/terminal.html'%}
 <script>
     $(function(){

@@ -14,6 +14,10 @@ def run_generator(arg1, arg2):
         seconds = int(arg2)
         new_news = []
         messenge = ''
+        strOut = [
+            [],
+            []
+        ]
         while True:
             steps -= 1
             if steps < 0:
@@ -27,14 +31,16 @@ def run_generator(arg1, arg2):
                 if procces >= mean_std_max + info_step:
                     mean_std_max += info_step
                     messenge = 'Превышено стандартное отклонение на: ' + str(procces) + '%'
-                    print(messenge)
+                    strOut[0].append(messenge)
+            strOut[0].append(data_sample['title'][0])
             print(data_sample['title'][0])
-
         mean_std = int(data_sample['month_mean'][0]-data_sample['month_std'][0])
         if len(new_news) < mean_std:
             procces = 100 - int((len(new_news)*100)/mean_std)
             messenge = 'Количество сообщений ниже стандартного отклонения на: ' + str(procces) + '%'
+            strOut[1].append(messenge)
             print(messenge)
-        return True
+        # print(strOut)
+        return strOut
     except ValueError:
         return False
